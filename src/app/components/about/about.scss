@@ -1,0 +1,109 @@
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+
+.about__text {
+  display: grid;
+  gap: 24px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 52ch;
+}
+
+.about__lead {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+/* ---------- saída do MySQL ---------- */
+
+.sql {
+  margin: 0;
+  padding: 22px 22px 18px;
+  font-size: 0.78rem;
+  line-height: 1.85;
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.sql__query {
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.sql__prompt {
+  color: var(--text-faint);
+  margin-right: 4px;
+}
+
+.sql__kw {
+  color: var(--violet);
+}
+
+.sql__num {
+  color: var(--accent);
+}
+
+.sql__row {
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.sql__result {
+  margin: 4px 0 14px;
+}
+
+.sql__pair {
+  display: grid;
+  grid-template-columns: calc(var(--key-ch) * 1ch + 1ch) minmax(0, 1fr);
+  gap: 1ch;
+  padding-block: 1px;
+  transition: background-color 0.2s var(--ease);
+
+  &:hover {
+    background: var(--accent-soft);
+
+    dd {
+      color: var(--accent);
+    }
+  }
+
+  dt {
+    text-align: right;
+    color: var(--text-faint);
+  }
+
+  dd {
+    margin: 0;
+    color: var(--text);
+    transition: color 0.2s var(--ease);
+  }
+}
+
+.sql__footer {
+  color: var(--text-faint);
+}
+
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sql {
+    padding: 18px 14px;
+    font-size: 0.72rem;
+  }
+}

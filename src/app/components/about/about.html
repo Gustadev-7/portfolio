@@ -1,0 +1,35 @@
+<section class="section" id="sobre" appEndpoint="/sobre">
+  <div class="container">
+    <app-section-heading index="01" path="/sobre" title="Sobre" emphasis="mim" />
+
+    <div class="about">
+      <div class="about__text">
+        @for (paragraph of profile.about; track $index; let i = $index) {
+          <p appReveal [appRevealDelay]="i * 90" [class.about__lead]="i === 0">{{ paragraph }}</p>
+        }
+      </div>
+
+      <figure class="sql mono" appReveal [appRevealDelay]="120">
+        <figcaption class="sql__query">
+          <span class="sql__prompt">mysql&gt;</span>
+          <span class="sql__kw">SELECT</span> {{ columns }}
+          <span class="sql__kw">FROM</span> perfil
+          <span class="sql__kw">WHERE</span> id = <span class="sql__num">1</span>\G
+        </figcaption>
+
+        <p class="sql__row" aria-hidden="true">*************************** 1. row ***************************</p>
+
+        <dl class="sql__result" [style.--key-ch]="keyWidth">
+          @for (fact of profile.facts; track fact.key) {
+            <div class="sql__pair">
+              <dt>{{ fact.key }}:</dt>
+              <dd>{{ fact.value }}</dd>
+            </div>
+          }
+        </dl>
+
+        <p class="sql__footer">1 row in set (0.00 sec)</p>
+      </figure>
+    </div>
+  </div>
+</section>

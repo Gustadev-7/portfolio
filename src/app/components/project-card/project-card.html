@@ -1,0 +1,67 @@
+@let p = project();
+
+<article class="card">
+  <div class="card__main">
+    <header class="card__meta mono">
+      <span class="card__route"><span class="method method--get">GET</span> /projetos/{{ p.slug }}</span>
+      <span class="card__year">{{ p.year }}</span>
+    </header>
+
+    <h3 class="card__title display">
+      <span class="card__num mono">{{ index() < 10 ? '0' + index() : index() }}</span>
+      {{ p.name }}
+    </h3>
+    <p class="card__tagline">{{ p.tagline }}</p>
+    <p class="card__desc">{{ p.description }}</p>
+
+    <ul class="card__highlights">
+      @for (item of p.highlights; track item) {
+        <li>{{ item }}</li>
+      }
+    </ul>
+
+    <footer class="card__footer">
+      <ul class="card__stack">
+        @for (tech of p.stack; track tech) {
+          <li class="chip">{{ tech }}</li>
+        }
+      </ul>
+      <a class="card__repo mono" [href]="p.repo" target="_blank" rel="noopener">
+        código <span aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </div>
+
+  @if (p.flow) {
+    <aside class="arch mono" [attr.aria-label]="'Arquitetura de ' + p.name">
+      <p class="arch__label">
+        <span>{{ p.flowTitle }}</span>
+        <span class="arch__context">{{ p.context }}</span>
+      </p>
+
+      <div class="flow" [style.--steps]="p.flow.length">
+        <span class="flow__packet" aria-hidden="true"></span>
+        <ol class="flow__steps">
+          @for (step of p.flow; track step.label) {
+            <li class="flow__step">
+              <span class="flow__node" aria-hidden="true"></span>
+              <span class="flow__name">{{ step.label }}</span>
+              <span class="flow__detail">{{ step.detail }}</span>
+            </li>
+          }
+        </ol>
+      </div>
+
+      @if (p.statusRules) {
+        <ul class="codes">
+          @for (rule of p.statusRules; track rule.code) {
+            <li>
+              <span [class]="statusClass(rule.code)">{{ rule.code }}</span>
+              <span class="codes__rule">{{ rule.rule }}</span>
+            </li>
+          }
+        </ul>
+      }
+    </aside>
+  }
+</article>
