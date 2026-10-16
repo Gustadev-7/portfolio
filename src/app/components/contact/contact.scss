@@ -1,0 +1,241 @@
+.contact {
+  padding-bottom: calc(clamp(88px, 12vw, 148px) + var(--statusbar-h));
+}
+
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+/* ---------- canais ---------- */
+
+.channels__intro {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 42ch;
+  margin-bottom: 36px;
+}
+
+.channels__list {
+  border-top: 1px solid var(--line-strong);
+
+  li {
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.channel {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 20px 0;
+  text-align: left;
+  transition: padding 0.4s var(--ease);
+
+  &:hover {
+    padding-left: 10px;
+
+    .channel__value {
+      color: var(--accent);
+    }
+
+    .channel__action {
+      color: var(--text);
+    }
+  }
+}
+
+.channel__label {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.channel__value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  overflow-wrap: anywhere;
+  transition: color 0.3s var(--ease);
+}
+
+.channel__action {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  transition: color 0.3s var(--ease);
+}
+
+/* ---------- requisição ---------- */
+
+.req {
+  font-size: 0.82rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-strong);
+  border-radius: calc(var(--radius) + 4px);
+  overflow: hidden;
+
+  p {
+    margin: 0;
+  }
+}
+
+.req__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  padding-inline: 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.76rem;
+
+  .method {
+    margin-right: 6px;
+  }
+}
+
+.req__ct {
+  color: var(--text-faint);
+  font-size: 0.7rem;
+}
+
+.req__body {
+  padding: 20px;
+  background: var(--bg-sunken);
+  line-height: 1.8;
+}
+
+.p {
+  color: var(--text-faint);
+}
+
+.k {
+  color: var(--info);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 12ch minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding-left: 2ch;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  transition: border-color 0.2s var(--ease);
+
+  &:focus-within {
+    border-left-color: var(--accent);
+  }
+
+  &.is-invalid {
+    border-left-color: var(--err);
+
+    .k {
+      color: var(--err);
+    }
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 6px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dashed var(--line-strong);
+    color: var(--ok);
+    font-family: var(--font-mono);
+    font-size: inherit;
+    resize: vertical;
+
+    &::placeholder {
+      color: var(--text-faint);
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  &--area {
+    align-items: start;
+
+    .field__key {
+      padding-top: 6px;
+    }
+  }
+}
+
+.req__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--line);
+}
+
+.req__hint {
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+
+.res {
+  display: grid;
+  gap: 2px;
+  padding: 14px 20px;
+  border-top: 1px dashed var(--line-strong);
+  animation: res-in 0.45s var(--ease) both;
+}
+
+.res__status {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.res--error .res__status {
+  color: var(--err);
+}
+
+.res__msg {
+  color: var(--text-muted);
+}
+
+@keyframes res-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 900px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .field {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .channel {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+  }
+
+  .channel__label {
+    grid-column: 1 / -1;
+  }
+
+  .req__hint {
+    display: none;
+  }
+}

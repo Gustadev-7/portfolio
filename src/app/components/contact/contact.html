@@ -1,0 +1,80 @@
+<section class="section contact" id="contato" appEndpoint="/contato">
+  <div class="container">
+    <app-section-heading index="05" method="POST" path="/contato" title="Entre em" emphasis="contato" />
+
+    <div class="contact__grid">
+      <div class="channels" appReveal>
+        <p class="channels__intro">
+          Em busca de uma vaga de estágio ou júnior em desenvolvimento, com foco em backend. Respondo
+          por qualquer um destes canais.
+        </p>
+
+        <ul class="channels__list">
+          <li>
+            <button class="channel" type="button" (click)="copyEmail()">
+              <span class="channel__label mono">e-mail</span>
+              <span class="channel__value">{{ profile.email }}</span>
+              <span class="channel__action mono" aria-live="polite">{{ copied() ? 'copiado ✓' : 'copiar' }}</span>
+            </button>
+          </li>
+          <li>
+            <a class="channel" href="curriculo.pdf" download="Gustavo-Domingos-Curriculo.pdf" (click)="downloadCv()">
+              <span class="channel__label mono">currículo</span>
+              <span class="channel__value">Baixar PDF</span>
+              <span class="channel__action mono" aria-hidden="true">↓</span>
+            </a>
+          </li>
+          @for (link of profile.links; track link.href) {
+            <li>
+              <a class="channel" [href]="link.href" target="_blank" rel="noopener">
+                <span class="channel__label mono">{{ link.label.toLowerCase() }}</span>
+                <span class="channel__value">{{ link.handle }}</span>
+                <span class="channel__action mono" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <form class="req mono" [formGroup]="form" (ngSubmit)="send()" novalidate appReveal [appRevealDelay]="120">
+        <div class="req__bar">
+          <span><span class="method method--post">POST</span> /contato</span>
+          <span class="req__ct">application/json</span>
+        </div>
+
+        <div class="req__body">
+          <p class="p">{{ '{' }}</p>
+
+          <label class="field" [class.is-invalid]="form.controls.nome.touched && form.controls.nome.invalid">
+            <span class="field__key"><span class="k">"nome"</span><span class="p">:</span></span>
+            <input formControlName="nome" type="text" autocomplete="name" placeholder='"seu nome"' />
+          </label>
+
+          <label class="field">
+            <span class="field__key"><span class="k">"assunto"</span><span class="p">:</span></span>
+            <input formControlName="assunto" type="text" placeholder='"opcional"' />
+          </label>
+
+          <label class="field field--area" [class.is-invalid]="form.controls.mensagem.touched && form.controls.mensagem.invalid">
+            <span class="field__key"><span class="k">"mensagem"</span><span class="p">:</span></span>
+            <textarea formControlName="mensagem" rows="4" placeholder='"no que posso ajudar?"'></textarea>
+          </label>
+
+          <p class="p">{{ '}' }}</p>
+        </div>
+
+        <div class="req__footer">
+          <span class="req__hint">via mailto · nada é armazenado</span>
+          <button class="btn btn--primary" type="submit">Enviar <span aria-hidden="true">⏎</span></button>
+        </div>
+
+        @if (response(); as res) {
+          <div class="res" [class.res--error]="res.status >= 400" role="status">
+            <span class="res__status">{{ res.status }} {{ res.label }}</span>
+            <span class="res__msg">{{ res.message }}</span>
+          </div>
+        }
+      </form>
+    </div>
+  </div>
+</section>

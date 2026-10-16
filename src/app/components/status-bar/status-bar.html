@@ -1,0 +1,44 @@
+@if (log.panelOpen()) {
+  <aside class="panel mono" id="access-log" aria-label="Access log da sessão">
+    <header class="panel__head">
+      <span>access.log</span>
+      <span class="panel__hint">tail -f · {{ requestCount() }} req</span>
+    </header>
+    <ol class="panel__list" aria-live="polite">
+      @for (entry of log.entries(); track entry.id) {
+        <li class="entry">
+          <span class="entry__time">{{ entry.time }}</span>
+          <span class="method" [class.method--get]="entry.method === 'GET'" [class.method--post]="entry.method === 'POST'">{{ entry.method }}</span>
+          <span class="entry__path">{{ entry.path }}</span>
+          <span class="entry__status" [class]="statusClass(entry.status)">{{ entry.status }}</span>
+        </li>
+      } @empty {
+        <li class="entry entry--empty">aguardando requisições…</li>
+      }
+    </ol>
+  </aside>
+}
+
+<footer class="bar mono">
+  <div class="bar__group">
+    <span class="bar__item bar__item--ok"><span class="dot" aria-hidden="true"></span>200 OK</span>
+    <span class="bar__item bar__path">{{ log.currentPath() }}</span>
+    <span class="bar__item bar__hide-sm">uptime {{ uptime() }}</span>
+  </div>
+
+  <div class="bar__group">
+    <span class="bar__item bar__hide-md">{{ location }}</span>
+    <span class="bar__item bar__hide-md">© {{ year }} Gustavo Domingos</span>
+    <button
+      class="bar__item bar__btn"
+      type="button"
+      (click)="log.togglePanel()"
+      [attr.aria-expanded]="log.panelOpen()"
+      aria-controls="access-log"
+      title="Mostrar access log (L)"
+    >
+      <span class="bar__kbd">L</span> log
+      <span class="bar__count">{{ requestCount() }}</span>
+    </button>
+  </div>
+</footer>
