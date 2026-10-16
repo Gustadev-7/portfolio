@@ -1,0 +1,343 @@
+<!doctype html>
+<!--
+  Fonte do currículo (public/curriculo.pdf).
+  Para gerar o PDF de novo: abra este arquivo no Chrome → Ctrl+P →
+  Destino "Salvar como PDF", Margens "Nenhuma", marque "Gráficos de plano de fundo".
+-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gustavo de Souza Domingos · Currículo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --text: #18181b;
+        --muted: #55555c;
+        --faint: #8a8a92;
+        --line: #e4e4e7;
+        --accent: #b45309;
+        --mono: 'Geist Mono', ui-monospace, Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: #fff;
+        color: var(--text);
+        font-family: 'Geist', system-ui, sans-serif;
+        font-size: 9.3pt;
+        line-height: 1.48;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 12mm 16mm 8mm;
+        margin: 0 auto;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ul {
+        margin: 0;
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .mono {
+        font-family: var(--mono);
+      }
+
+      /* ---------- cabeçalho ---------- */
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 12mm;
+        padding-bottom: 6mm;
+        border-bottom: 1.5px solid var(--text);
+      }
+
+      h1 {
+        font-size: 24pt;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 2.2mm;
+      }
+
+      .role {
+        font-family: var(--mono);
+        font-size: 9pt;
+        color: var(--accent);
+      }
+
+      .contact {
+        font-family: var(--mono);
+        font-size: 8pt;
+        color: var(--muted);
+        text-align: right;
+        line-height: 1.75;
+        white-space: nowrap;
+      }
+
+      /* ---------- seções ---------- */
+
+      section {
+        display: grid;
+        grid-template-columns: 34mm 1fr;
+        gap: 6mm;
+        padding: 3.4mm 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      section:last-child {
+        border-bottom: 0;
+      }
+
+      h2 {
+        font-family: var(--mono);
+        font-size: 7.6pt;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--faint);
+        padding-top: 0.6mm;
+      }
+
+      .summary {
+        font-size: 10pt;
+        color: var(--text);
+      }
+
+      .item + .item {
+        margin-top: 3.2mm;
+      }
+
+      .item--compact h3 {
+        font-size: 9.6pt;
+        font-weight: 500;
+      }
+
+      .item__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 4mm;
+      }
+
+      h3 {
+        font-size: 10.5pt;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+      }
+
+      .date {
+        font-family: var(--mono);
+        font-size: 7.8pt;
+        color: var(--faint);
+        white-space: nowrap;
+      }
+
+      .place {
+        color: var(--muted);
+        margin-bottom: 1mm;
+      }
+
+      .stack {
+        font-family: var(--mono);
+        font-size: 7.8pt;
+        color: var(--accent);
+        margin-bottom: 1.2mm;
+      }
+
+      .bullets li {
+        position: relative;
+        padding-left: 4mm;
+        color: var(--muted);
+      }
+
+      .bullets li::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        font-family: var(--mono);
+        font-size: 7pt;
+        top: 0.25em;
+        color: var(--accent);
+      }
+
+      .skills {
+        display: grid;
+        gap: 1.4mm;
+      }
+
+      .skills div {
+        display: grid;
+        grid-template-columns: 26mm 1fr;
+      }
+
+      .skills dt {
+        font-weight: 600;
+      }
+
+      .skills dd {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      dl {
+        margin: 0;
+      }
+
+      .repo {
+        font-family: var(--mono);
+        font-size: 7.6pt;
+        color: var(--faint);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <div>
+          <h1>Gustavo de Souza Domingos</h1>
+          <p class="role">Desenvolvedor backend em formação</p>
+        </div>
+        <div class="contact">
+          <p>Boituva/SP · (14) 98802-1209</p>
+          <p><a href="mailto:gustavo.souzadomingos7@gmail.com">gustavo.souzadomingos7@gmail.com</a></p>
+          <p><a href="https://www.linkedin.com/in/gustavo-domingos-4b7880356">linkedin.com/in/gustavo-domingos-4b7880356</a></p>
+          <p><a href="https://github.com/Gustadev-7">github.com/Gustadev-7</a></p>
+        </div>
+      </header>
+
+      <section>
+        <h2>Objetivo</h2>
+        <p class="summary">
+          Estudante de Análise e Desenvolvimento de Sistemas (IFSP), em busca de vaga de estágio ou
+          júnior em desenvolvimento. Experiência prática com Java, TypeScript, SQL e Programação
+          Orientada a Objetos, além do desenvolvimento de sistemas internos e APIs REST. Comunicativo,
+          organizado e motivado a aprofundar conhecimentos em back-end e banco de dados.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experiência</h2>
+        <div>
+          <div class="item">
+            <div class="item__head">
+              <h3>Assistente de TI</h3>
+              <span class="date">2025 — atual</span>
+            </div>
+            <p class="place">Vidroeste Vidros Temperados</p>
+            <ul class="bullets">
+              <li>Suporte técnico com manutenção preventiva e corretiva de hardware e software, garantindo o funcionamento contínuo dos equipamentos e sistemas.</li>
+              <li>Desenvolvimento de um sistema web de monitoramento das impressoras da rede local, com controle de custos de suprimentos (toner, cartucho e cilindro).</li>
+              <li>Criação de um chat interno para agilizar a comunicação entre equipes e o fluxo de solicitações de suporte.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Formação</h2>
+        <div>
+          <div class="item">
+            <div class="item__head">
+              <h3>Tecnologia em Análise e Desenvolvimento de Sistemas</h3>
+              <span class="date">2025 — atual</span>
+            </div>
+            <p class="place">Instituto Federal de São Paulo (IFSP) · 4º semestre</p>
+          </div>
+          <div class="item item--compact">
+            <div class="item__head">
+              <h3>Cursos: Java (Red Hat) · UX/UI Design (Google)</h3>
+              <span class="date">em andamento</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projetos</h2>
+        <div>
+          <div class="item">
+            <div class="item__head">
+              <h3>PrintMonitor: monitoramento de impressoras de rede</h3>
+              <span class="repo">Gustadev-7/PrintMonitor</span>
+            </div>
+            <p class="stack">Node.js · Express · Axios · JavaScript</p>
+            <ul class="bullets">
+              <li>Servidor Express como proxy reverso com API REST própria; status, níveis de suprimentos e contadores sem agentes.</li>
+              <li>Parsers para Epson, Canon, Brother e Lexmark; login Canon em 3 etapas com hash e sessão em cache.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="item__head">
+              <h3>API REST de concessionária (em equipe)</h3>
+              <span class="repo">Gustadev-7/projeto-I-prog-web</span>
+            </div>
+            <p class="stack">Node.js · TypeScript · Express · MySQL</p>
+            <ul class="bullets">
+              <li>Arquitetura MVC em camadas: routes, controllers, services e repositories.</li>
+              <li>CRUD de clientes, vendedores, carros, estoque e notas fiscais, com regras de negócio na camada de serviço.</li>
+              <li>Respostas HTTP coerentes (409 para duplicidade, 422 para remoção com vínculos) e baixa automática de estoque.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="item__head">
+              <h3>Sistema de Compras</h3>
+              <span class="repo">Gustadev-7/SitemaDeCompras</span>
+            </div>
+            <p class="stack">Java</p>
+            <ul class="bullets">
+              <li>Sistema de compras com orientação a objetos e modelagem de domínio.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Habilidades</h2>
+        <dl class="skills">
+          <div><dt>Backend</dt><dd>TypeScript, Node.js, Express, Java, PHP, C</dd></div>
+          <div><dt>Bancos</dt><dd>MySQL, Oracle, SQL</dd></div>
+          <div><dt>Frontend</dt><dd>Angular, React, HTML, CSS, JavaScript</dd></div>
+          <div><dt>Ferramentas</dt><dd>Git, Postman, VS Code, IntelliJ IDEA, Pacote Office (Excel)</dd></div>
+          <div><dt>Suporte</dt><dd>Manutenção e suporte de hardware e software</dd></div>
+          <div><dt>Idiomas</dt><dd>Inglês intermediário</dd></div>
+        </dl>
+      </section>
+    </main>
+  </body>
+</html>

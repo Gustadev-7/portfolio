@@ -1,0 +1,211 @@
+<!doctype html>
+<!--
+  Fonte da imagem de prévia (public/og.png, 1200×630) usada ao compartilhar o link
+  no LinkedIn, WhatsApp etc. Para regenerar: abra no Chrome, DevTools → Ctrl+Shift+P →
+  "Capture node screenshot" com o elemento .og selecionado.
+-->
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500&family=Geist:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        background: #0d0d0c;
+      }
+
+      .og {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #0d0d0c;
+        color: #ecebe6;
+        font-family: 'Geist', sans-serif;
+        display: grid;
+        grid-template-columns: 1fr 470px;
+        align-items: center;
+        gap: 40px;
+        padding: 0 72px 40px;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(236, 235, 230, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(236, 235, 230, 0.07) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 75% 70% at 35% 45%, #000 15%, transparent 75%);
+      }
+
+      .copy,
+      .term {
+        position: relative;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Geist Mono', monospace;
+        font-size: 20px;
+        color: #94928a;
+        margin-bottom: 30px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #86d6a1;
+        box-shadow: 0 0 0 6px rgba(134, 214, 161, 0.15);
+      }
+
+      h1 {
+        font-size: 112px;
+        line-height: 0.92;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+
+      h1 em {
+        display: block;
+        padding-left: 0.45em;
+        font-family: 'Geist Mono', monospace;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 0.94em;
+        letter-spacing: -0.07em;
+        color: #94928a;
+      }
+
+      .caret {
+        color: #ffb547;
+      }
+
+      .role {
+        margin-top: 34px;
+        font-size: 26px;
+        color: #94928a;
+        letter-spacing: -0.01em;
+      }
+
+      .tag {
+        font-family: 'Geist Mono', monospace;
+        font-size: 0.9em;
+        padding: 2px 10px;
+        border-radius: 6px;
+        color: #ffb547;
+        background: rgba(255, 181, 71, 0.12);
+      }
+
+      .term {
+        font-family: 'Geist Mono', monospace;
+        font-size: 18px;
+        line-height: 1.75;
+        background: #141413;
+        border: 1px solid rgba(236, 235, 230, 0.16);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.8);
+      }
+
+      .term__head {
+        padding: 16px 22px;
+        border-bottom: 1px dashed rgba(236, 235, 230, 0.1);
+      }
+
+      .term__body {
+        padding: 18px 22px 22px;
+        background: #090908;
+        white-space: pre;
+      }
+
+      .get {
+        color: #86d6a1;
+        font-weight: 500;
+      }
+      .ok {
+        color: #86d6a1;
+      }
+      .f {
+        color: #5e5d58;
+      }
+      .k {
+        color: #8cbcf5;
+      }
+      .s {
+        color: #86d6a1;
+      }
+      .b {
+        color: #cba6f7;
+      }
+
+      .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 72px;
+        border-top: 1px solid rgba(236, 235, 230, 0.08);
+        background: #141413;
+        font-family: 'Geist Mono', monospace;
+        font-size: 17px;
+        color: #94928a;
+      }
+
+      .bar strong {
+        color: #ecebe6;
+        font-weight: 500;
+      }
+
+      .bar .accent {
+        color: #ffb547;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="og">
+      <div class="grid"></div>
+
+      <div class="copy">
+        <p class="status"><span class="dot"></span>online · Boituva/SP</p>
+        <h1>Gustavo<em>Domingos<span class="caret">_</span></em></h1>
+        <p class="role">Desenvolvedor <span class="tag">backend</span> em formação</p>
+      </div>
+
+      <div class="term">
+        <div class="term__head">
+          <div><span class="get">GET</span> /v1/gustavo</div>
+          <div><span class="f">HTTP/1.1</span> <span class="ok">200 OK</span></div>
+        </div>
+        <div class="term__body"><span class="f">{</span>
+  <span class="k">"foco"</span><span class="f">:</span> <span class="s">"backend"</span><span class="f">,</span>
+  <span class="k">"stack"</span><span class="f">: [</span><span class="s">"Node.js"</span><span class="f">,</span> <span class="s">"TS"</span><span class="f">,</span> <span class="s">"Java"</span><span class="f">],</span>
+  <span class="k">"bancos"</span><span class="f">: [</span><span class="s">"MySQL"</span><span class="f">,</span> <span class="s">"Oracle"</span><span class="f">],</span>
+  <span class="k">"formacao"</span><span class="f">:</span> <span class="s">"ADS · IFSP"</span><span class="f">,</span>
+  <span class="k">"disponivel"</span><span class="f">:</span> <span class="b">true</span>
+<span class="f">}</span></div>
+      </div>
+
+      <div class="bar">
+        <span><strong>~/gustavo<span class="accent">.</span>dev</strong></span>
+        <span>APIs REST · Node.js · TypeScript · SQL</span>
+      </div>
+    </div>
+  </body>
+</html>
