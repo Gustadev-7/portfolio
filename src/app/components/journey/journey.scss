@@ -1,0 +1,206 @@
+.tracks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(40px, 6vw, 88px);
+  align-items: start;
+}
+
+.track__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.track__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.track__cmd {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.track__prompt {
+  color: var(--accent);
+  margin-right: 4px;
+}
+
+.track__branch {
+  color: var(--violet);
+}
+
+.log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.commit {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 18px;
+}
+
+/* linha do grafo do git: atravessa cada commit e termina no commit raiz */
+.commit__graph {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line-strong);
+  }
+}
+
+.commit:first-child .commit__graph::before {
+  top: 12px;
+}
+
+.commit.is-root .commit__graph::before {
+  bottom: auto;
+  height: 12px;
+}
+
+.commit:only-child .commit__graph::before {
+  display: none;
+}
+
+.commit__dot {
+  position: relative;
+  margin-top: 7px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-muted);
+  background: var(--bg);
+  transition: border-color 0.3s var(--ease);
+}
+
+.commit.is-head .commit__dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+}
+
+.commit:hover .commit__dot {
+  border-color: var(--accent);
+}
+
+.commit__body {
+  padding-bottom: 36px;
+}
+
+.commit.is-root .commit__body {
+  padding-bottom: 0;
+}
+
+.commit__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: 10px;
+}
+
+.commit__hash {
+  color: var(--accent);
+}
+
+.commit__ref {
+  padding: 1px 8px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.66rem;
+}
+
+.commit__kind {
+  &::before {
+    content: '(';
+  }
+  &::after {
+    content: ')';
+  }
+}
+
+.commit__date {
+  margin-left: auto;
+}
+
+.commit__msg {
+  margin: 0 0 2px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+
+.commit__place {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.commit__detail {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.commit__highlights {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+
+  li {
+    position: relative;
+    padding-left: 22px;
+
+    &::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      top: 0.15em;
+      font-family: var(--font-mono);
+      font-size: 0.8em;
+      color: var(--accent);
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .tracks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .commit {
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .commit__date {
+    margin-left: 0;
+  }
+
+  .track__head {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

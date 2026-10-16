@@ -1,0 +1,53 @@
+<section class="section" id="trajetoria" appEndpoint="/trajetoria">
+  <div class="container">
+    <app-section-heading
+      index="04"
+      path="/trajetoria"
+      title="Trajetória"
+      emphasis="e formação"
+      lead="Experiência profissional e formação acadêmica, da mais recente para a mais antiga."
+    />
+
+    <div class="tracks">
+      @for (t of tracks; track t.branch; let ti = $index) {
+        <div class="track" appReveal [appRevealDelay]="ti * 120">
+          <header class="track__head">
+            <h3 class="track__title">{{ t.title }}</h3>
+            <p class="track__cmd mono">
+              <span class="track__prompt">$</span> git log <span class="track__branch">{{ t.branch }}</span>
+            </p>
+          </header>
+
+          <ol class="log">
+            @for (commit of t.commits; track commit.hash; let first = $first; let last = $last) {
+              <li class="commit" [class.is-head]="first" [class.is-root]="last">
+                <span class="commit__graph" aria-hidden="true"><span class="commit__dot"></span></span>
+
+                <div class="commit__body">
+                  <p class="commit__meta mono">
+                    <span class="commit__hash">{{ commit.hash }}</span>
+                    @if (first) {
+                      <span class="commit__ref">HEAD → {{ t.branch }}</span>
+                    }
+                    <span class="commit__kind">{{ commit.kind }}</span>
+                    <span class="commit__date">{{ commit.date }}</span>
+                  </p>
+                  <h4 class="commit__msg">{{ commit.message }}</h4>
+                  <p class="commit__place">{{ commit.place }}</p>
+                  <p class="commit__detail">{{ commit.detail }}</p>
+                  @if (commit.highlights?.length) {
+                    <ul class="commit__highlights">
+                      @for (item of commit.highlights; track item) {
+                        <li>{{ item }}</li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </li>
+            }
+          </ol>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+<section class="section" id="stack" appEndpoint="/stack">
+  <div class="container">
+    <app-section-heading
+      index="03"
+      path="/stack"
+      title="Stack"
+      emphasis="e ferramentas"
+      lead="Tecnologias que uso no dia a dia, as que estou aprofundando e as ferramentas do meu fluxo de trabalho."
+    />
+
+    <div class="pkg mono" appReveal>
+      <div class="pkg__tabbar">
+        <span class="pkg__tab">package.json</span>
+        <span class="pkg__path">~/gustavo</span>
+      </div>
+
+      <div class="pkg__head">
+        <span class="p">{{ '{' }}</span>
+        <span class="indent"><span class="k">"name"</span><span class="p">: </span><span class="s">"gustavo-domingos"</span><span class="p">,</span></span>
+        <span class="indent"><span class="k">"version"</span><span class="p">: </span><span class="s">"{{ version }}"</span><span class="p">,</span></span>
+      </div>
+
+      <div class="pkg__groups">
+        @for (group of groups; track group.key; let i = $index; let last = $last) {
+          <div class="group" appReveal [appRevealDelay]="i * 100">
+            <p class="indent">
+              <span class="k">"{{ group.key }}"</span><span class="p">: {{ '{' }}</span>
+              <span class="c">// {{ group.description }}</span>
+            </p>
+            <ul>
+              @for (item of group.items; track item.name; let lastItem = $last) {
+                <li class="dep">
+                  <span class="k">"{{ item.name }}"</span><span class="p">: </span><span class="s">"{{ item.note }}"</span><span class="p">{{ lastItem ? '' : ',' }}</span>
+                </li>
+              }
+            </ul>
+            <p class="indent"><span class="p">{{ '}' }}{{ last ? '' : ',' }}</span></p>
+          </div>
+        }
+      </div>
+
+      <div class="pkg__foot"><span class="p">{{ '}' }}</span></div>
+    </div>
+  </div>
+</section>
