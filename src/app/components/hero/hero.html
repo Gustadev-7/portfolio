@@ -1,0 +1,89 @@
+<section class="hero" id="inicio" appEndpoint="/">
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="hero__status mono">
+        <span class="pulse" aria-hidden="true"></span>
+        online · {{ profile.location }}
+      </p>
+
+      <h1 class="hero__title display">
+        <span class="hero__line">Gustavo</span>
+        <em class="hero__line hero__line--indent">Domingos<span class="hero__caret" aria-hidden="true">_</span></em>
+      </h1>
+
+      <p class="hero__role">
+        Desenvolvedor <span class="hero__tag mono">backend</span> em formação.
+        {{ profile.intro }}
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary mono" href="#projetos">
+          <span class="method">GET</span> /projetos
+        </a>
+        <a class="btn btn--ghost mono" href="#contato">
+          <span class="method">POST</span> /contato
+        </a>
+        <a class="btn btn--ghost mono" href="curriculo.pdf" download="Gustavo-Domingos-Curriculo.pdf" (click)="downloadCv()">
+          currículo <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="term mono" role="figure" aria-label="Resumo do perfil em formato JSON">
+      <div class="term__bar">
+        <span class="term__tab is-active">resposta</span>
+        <span class="term__host">api.gustavo.dev</span>
+      </div>
+
+      <div class="term__req">
+        <p>
+          <span class="method method--get">GET</span> /v1/gustavo
+          <span class="term__faint">HTTP/1.1</span>
+        </p>
+        <p class="term__faint">Accept: application/json</p>
+      </div>
+
+      <div class="term__res">
+        <p>
+          <span class="term__faint">HTTP/1.1&nbsp;</span>
+          @if (streaming()) {
+            <span class="term__status term__status--pending">102 Processing</span>
+          } @else {
+            <span class="term__status">200 OK</span>
+          }
+        </p>
+        <p class="term__faint">
+          x-github-latency:
+          @if (latency() !== null) {
+            <span class="term__live" title="Latência real da API pública do GitHub, medida agora">{{ latency() }}ms</span>
+          } @else if (githubState().status === 'error') {
+            <span>indisponível</span>
+          } @else {
+            <span>…</span>
+          }
+        </p>
+      </div>
+
+      <div class="term__body" aria-live="off">
+        @for (line of lines(); track $index; let i = $index) {
+          @if (i < visibleLines()) {
+            <div class="term__line">
+              <span class="term__ln">{{ i + 1 }}</span>
+              <span class="term__code">@for (tok of line; track $index) {<span [class]="'tk tk--' + tok.kind">{{ tok.text }}</span>}</span>
+            </div>
+          }
+        }
+        @if (streaming()) {
+          <div class="term__line"><span class="term__ln"></span><span class="term__cursor"></span></div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <a class="hero__scroll mono" href="#sobre" aria-label="Rolar para a seção sobre">
+    <span>scroll</span>
+    <span class="hero__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>
