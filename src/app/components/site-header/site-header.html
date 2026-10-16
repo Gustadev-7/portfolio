@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="container header__inner">
+    <a class="brand mono" href="#inicio" aria-label="Voltar ao início">
+      <span class="brand__prompt">~/</span>gustavo<span class="brand__dot">.</span>dev
+    </a>
+
+    <nav class="nav" aria-label="Seções">
+      @for (item of nav; track item.path) {
+        <a
+          class="nav__link mono"
+          [href]="anchor(item.path)"
+          [class.is-active]="log.currentPath() === item.path"
+          [attr.aria-current]="log.currentPath() === item.path ? 'location' : null"
+        >
+          <span class="nav__method method" [class.method--post]="item.method === 'POST'" [class.method--get]="item.method === 'GET'">{{ item.method }}</span>
+          <span class="nav__label">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+    <button
+      class="theme-toggle"
+      type="button"
+      (click)="theme.toggle()"
+      [attr.aria-label]="theme.theme() === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro'"
+      title="Alternar tema (T)"
+    >
+      <span class="theme-toggle__track" [class.is-light]="theme.theme() === 'light'">
+        <span class="theme-toggle__thumb"></span>
+      </span>
+    </button>
+  </div>
+</header>
