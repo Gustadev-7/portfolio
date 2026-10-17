@@ -1,4 +1,4 @@
-# gustavo.dev
+# gusta.dev
 
 Portfólio de Gustavo Domingos, desenvolvido em **Angular 21 + TypeScript** (componentes standalone, signals, zoneless).
 
