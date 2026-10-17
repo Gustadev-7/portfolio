@@ -45,7 +45,7 @@ export class Hero {
       foco: PROFILE.focus,
       local: PROFILE.location,
       stack: ['Node.js', 'TypeScript', 'Java'],
-      bancos: ['MySQL', 'Oracle'],
+      bancos: ['MySQL', 'Firebird', 'Oracle'],
       estudando: ['Angular', 'C'],
       formacao: 'ADS · IFSP',
       repos_publicos: this.repos(),
