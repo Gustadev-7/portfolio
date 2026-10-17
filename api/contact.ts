@@ -1,4 +1,5 @@
 import { ContactReply, validateContact } from '../src/app/shared/contact';
+import { originFromHeaders, renderContactEmail } from './_email';
 
 /**
  * POST /api/contact — função serverless da Vercel.
@@ -46,16 +47,20 @@ export async function POST(request: Request): Promise<Response> {
     return reply(422, 'Unprocessable Entity', result.message, result.field);
   }
 
-  const { nome, email, assunto, mensagem } = result.data;
+  const email = renderContactEmail(result.data, {
+    receivedAt: new Date(),
+    origin: originFromHeaders(request.headers),
+  });
   const resend = await fetch(RESEND_URL, {
     method: 'POST',
     headers: { Authorization: `Bearer ${env.apiKey}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
       from: SENDER,
       to: [env.to],
-      reply_to: email,
-      subject: assunto ? `[portfólio] ${assunto}` : `[portfólio] Contato de ${nome}`,
-      text: `${mensagem}\n\n—\n${nome} <${email}>\nEnviado pelo formulário de gusta.dev`,
+      reply_to: result.data.email,
+      subject: email.subject,
+      html: email.html,
+      text: email.text,
     }),
   }).catch((error: unknown) => {
     console.error('[contact] falha de rede ao chamar o Resend', error);
