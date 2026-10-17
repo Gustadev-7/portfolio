@@ -203,8 +203,46 @@
   color: var(--err);
 }
 
+.res--pending .res__status {
+  color: var(--accent);
+}
+
+.res__time {
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
 .res__msg {
   color: var(--text-muted);
+}
+
+.res__fallback {
+  justify-self: start;
+  margin-top: 6px;
+  color: var(--text);
+  border-bottom: 1px solid var(--line-strong);
+  transition:
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+/* honeypot fora da tela (display:none alguns robôs detectam) */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 @keyframes res-in {
