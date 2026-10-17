@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HttpMethod } from '../../models/portfolio.models';
 import { RequestLogService } from '../../services/request-log.service';
 import { ThemeService } from '../../services/theme.service';
+import { BrandLogo } from '../brand-logo/brand-logo';
 
 interface NavItem {
   label: string;
@@ -11,6 +12,7 @@ interface NavItem {
 
 @Component({
   selector: 'app-site-header',
+  imports: [BrandLogo],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './site-header.html',
   styleUrl: './site-header.scss',
