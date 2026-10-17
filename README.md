@@ -30,6 +30,25 @@ src/app/
 └── utils/        # serializador de JSON com realce de sintaxe
 ```
 
+## API de contato
+
+O formulário envia para `POST /api/contact`, uma função serverless da Vercel em [`api/contact.ts`](api/contact.ts) que valida a mensagem e a encaminha por e-mail via [Resend](https://resend.com). As regras de validação ficam em [`src/app/shared/contact.ts`](src/app/shared/contact.ts) e são usadas pelo front e pelo back.
+
+| Status | Quando |
+|---|---|
+| `202 Accepted` | mensagem enviada |
+| `400 Bad Request` | corpo não é JSON |
+| `422 Unprocessable Entity` | campo inválido (retorna `field`) |
+| `429 Too Many Requests` | mais de 5 envios em 10 min pelo mesmo IP |
+| `502 Bad Gateway` | o Resend não respondeu |
+
+Variáveis de ambiente (Vercel → Settings → Environment Variables):
+
+- `RESEND_API_KEY`: chave da API do Resend
+- `CONTACT_TO_EMAIL`: e-mail que recebe as mensagens
+
+Em `ng serve` a rota `/api` não existe; o formulário mostra o erro e oferece o envio pelo cliente de e-mail. Para testar a função localmente, use `npx vercel dev`.
+
 ## Currículo e imagem de prévia
 
 - `public/curriculo.pdf`: o currículo baixado pelo site. Para atualizar, basta substituir este arquivo mantendo o nome.
