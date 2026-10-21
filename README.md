@@ -49,6 +49,16 @@ Variáveis de ambiente (Vercel → Settings → Environment Variables):
 
 Em `ng serve` a rota `/api` não existe; o formulário mostra o erro e oferece o envio pelo cliente de e-mail. Para testar a função localmente, use `npx vercel dev`.
 
+## Segurança
+
+Cabeçalhos HTTP definidos em [`vercel.json`](vercel.json): `Content-Security-Policy` (sem scripts inline; libera só Google Fonts e a API do GitHub), `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` e `Cross-Origin-Opener-Policy`.
+
+Por causa da CSP:
+- o script de tema fica em [`public/theme-init.js`](public/theme-init.js), e não inline no `index.html`;
+- o `inlineCritical` do Angular está desligado no `angular.json` (ele gera um `onload` inline que a CSP bloquearia).
+
+Ao adicionar um serviço externo (analytics, outra API, imagens de outro domínio), inclua o domínio na diretiva correspondente da CSP.
+
 ## Currículo e imagem de prévia
 
 - `public/curriculo.pdf`: o currículo baixado pelo site. Para atualizar, basta substituir este arquivo mantendo o nome.
