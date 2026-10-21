@@ -15,7 +15,7 @@ export const PROFILE: Profile = {
     'Construo APIs REST com Node.js e TypeScript, modelo bancos relacionais e gosto de entender como os sistemas conversam por baixo da interface.',
   about: [
     'Sou estudante de Análise e Desenvolvimento de Sistemas no IFSP e trabalho como Assistente de TI. O dia a dia com infraestrutura me deixou com uma curiosidade prática: entender o que acontece entre a requisição e a resposta.',
-    'Na Vidroeste, além do suporte, desenvolvi ferramentas internas: um sistema de monitoramento de impressoras com controle de custos e um chat para as equipes. Meu foco é o backend: arquitetura em camadas, regras de negócio bem definidas e APIs previsíveis, com TypeScript, Node.js, Java e SQL.',
+    'Na Vidroeste, além do suporte, desenvolvi sistemas internos: um CRM de atendimento via WhatsApp com chat interno para a equipe e um sistema de monitoramento de impressoras com controle de custos. Meu foco é o backend: arquitetura em camadas, regras de negócio bem definidas e APIs previsíveis, com TypeScript, Node.js, Java e SQL.',
     'Estou em busca de uma vaga de estágio ou júnior em desenvolvimento, com interesse especial em backend e banco de dados.',
   ],
   email: 'gustavo.souzadomingos7@gmail.com',
@@ -44,30 +44,54 @@ export const PROFILE: Profile = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'crm-atendimento',
+    name: 'CRM de Atendimento',
+    tagline: 'Atendimento via WhatsApp e chat interno da equipe em um só sistema.',
+    description:
+      'Sistema web de uso interno que desenvolvi para a empresa onde trabalho. Centraliza o atendimento de clientes pelo WhatsApp em uma interface no estilo do WhatsApp Web, com vários números organizados por departamento, e integra um chat interno em tempo real para a equipe.',
+    context: 'Profissional · uso interno',
+    year: '2026',
+    stack: ['React', 'PHP', 'Node.js', 'WebSocket', 'WhatsApp API', 'SQL'],
+    highlights: [
+      'Integração com a API oficial do WhatsApp (Meta Cloud API) e com uma API não oficial, em vários números por departamento',
+      'Os dois provedores ficam atrás de uma interface comum: o restante do sistema não depende de qual está em uso',
+      'Direcionamento automático de novos contatos ao atendente responsável',
+      'Mídias, respostas, reações e modelos de mensagem',
+      'Chat interno em tempo real com login único compartilhado com o CRM',
+      'Controle de equipe com permissões por função; em produção na empresa',
+    ],
+    featured: true,
+    flowTitle: 'módulos',
+    flow: [
+      { label: 'Canais', detail: 'API oficial e não oficial do WhatsApp, por departamento' },
+      { label: 'Distribuição', detail: 'menu automático e responsável por cliente' },
+      { label: 'Atendimento', detail: 'conversas, mídias e modelos de mensagem' },
+      { label: 'Equipe', detail: 'usuários, departamentos e permissões' },
+      { label: 'Chat interno', detail: 'mensagens em tempo real entre a equipe' },
+    ],
+  },
+  {
     slug: 'printmonitor',
     name: 'PrintMonitor',
     tagline: 'Monitoramento de impressoras e controle de custos de suprimentos.',
     description:
-      'Sistema em produção na Vidroeste que acompanha em tempo real status, níveis de toner/tinta e contadores de páginas das impressoras da rede, e controla estoque, trocas e gastos com suprimentos. São dois backends atrás do Apache: um proxy Node.js que conversa com as impressoras e uma API de custos em PHP sobre Firebird.',
-    context: 'Profissional · Vidroeste',
+      'Sistema web de uso interno que desenvolvi para a empresa onde trabalho. Ele reúne em um único painel o acompanhamento das impressoras da rede e o controle dos gastos com suprimentos.',
+    context: 'Profissional · uso interno',
     year: '2026',
-    stack: ['React', 'TypeScript', 'Node.js', 'Express', 'PHP', 'Firebird'],
+    stack: ['React', 'TypeScript', 'Node.js', 'PHP', 'SQL'],
     highlights: [
-      'Custo unitário por FIFO real, calculado a partir dos lotes de entrada de estoque',
-      'Triggers no Firebird mantêm o estoque consistente a cada entrada e troca',
-      'Proxy Express contorna o CORS e lê Epson, Canon, Brother e Lexmark (login Canon em 3 etapas com SHA-256)',
-      'Gastos mensais por suprimento e relatórios em PDF de trocas, gastos e estoque',
-      'Login para alterações, custos ocultos para visitantes e CI de build no GitHub',
+      'Acompanhamento do status e dos níveis de suprimento das impressoras em tempo real',
+      'Controle de estoque e histórico de trocas de suprimentos',
+      'Relatórios de consumo e gastos por período',
+      'Em produção na empresa',
     ],
-    repo: 'https://github.com/Gustadev-7/PrintMonitor',
     featured: true,
-    flowTitle: 'arquitetura',
+    flowTitle: 'módulos',
     flow: [
-      { label: 'React + TypeScript', detail: 'dashboard, painéis de custo e relatórios PDF' },
-      { label: 'Apache', detail: 'serve o build e roteia /api e /php' },
-      { label: '/api · Node + Express', detail: 'proxy para as impressoras, sessão Canon em cache' },
-      { label: '/php · API de custos', detail: 'estoque, entradas, trocas e gastos via PDO' },
-      { label: 'Firebird', detail: 'triggers de estoque e views de custo' },
+      { label: 'Monitoramento', detail: 'status e níveis de suprimento em tempo real' },
+      { label: 'Estoque', detail: 'entradas e posição atual dos suprimentos' },
+      { label: 'Trocas', detail: 'histórico de substituições por equipamento' },
+      { label: 'Custos', detail: 'gastos por período e relatórios' },
     ],
   },
   {
@@ -125,18 +149,6 @@ export const PROJECTS: Project[] = [
     repo: 'https://github.com/Gustadev-7/loja-tp1',
     featured: false,
   },
-  {
-    slug: 'driveup',
-    name: 'DriveUp',
-    tagline: 'Site multipágina, projeto final do 1º semestre.',
-    description: 'Primeiro projeto web completo do curso, feito com HTML, CSS e JavaScript.',
-    context: 'Acadêmico',
-    year: '2025',
-    stack: ['HTML', 'CSS', 'JavaScript'],
-    highlights: [],
-    repo: 'https://github.com/Gustadev-7/site-driveup',
-    featured: false,
-  },
 ];
 
 export const STACK: StackGroup[] = [
@@ -185,7 +197,7 @@ export const EXPERIENCE: Commit[] = [
       'Suporte técnico com manutenção preventiva e corretiva de hardware e software, garantindo o funcionamento contínuo dos equipamentos e sistemas da empresa.',
     highlights: [
       'Desenvolvi o PrintMonitor, sistema web em produção que monitora as impressoras da rede e controla estoque, trocas e custos de suprimentos (toner, cartucho e cilindro).',
-      'Criei um chat interno para agilizar a comunicação entre equipes e o fluxo de solicitações de suporte.',
+      'Desenvolvi um CRM de atendimento via WhatsApp, com chat interno em tempo real para agilizar a comunicação entre as equipes.',
     ],
   },
 ];
