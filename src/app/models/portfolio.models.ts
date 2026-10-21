@@ -45,7 +45,8 @@ export interface Project {
   year: string;
   stack: string[];
   highlights: string[];
-  repo: string;
+  /** Sem `repo`, o card indica que o código é privado (sistemas internos). */
+  repo?: string;
   featured: boolean;
   flowTitle?: string;
   flow?: FlowStep[];

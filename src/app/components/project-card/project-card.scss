@@ -137,6 +137,12 @@
   }
 }
 
+.card__private {
+  font-size: 0.74rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
 /* ---------- arquitetura ---------- */
 
 .arch {

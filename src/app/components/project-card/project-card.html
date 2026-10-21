@@ -26,14 +26,20 @@
           <li class="chip">{{ tech }}</li>
         }
       </ul>
-      <a class="card__repo mono" [href]="p.repo" target="_blank" rel="noopener">
-        código <span aria-hidden="true">↗</span>
-      </a>
+      @if (p.repo) {
+        <a class="card__repo mono" [href]="p.repo" target="_blank" rel="noopener">
+          código <span aria-hidden="true">↗</span>
+        </a>
+      } @else {
+        <span class="card__private mono" title="Sistema de uso interno; o código não é público">
+          <span aria-hidden="true">🔒</span> uso interno · código privado
+        </span>
+      }
     </footer>
   </div>
 
   @if (p.flow) {
-    <aside class="arch mono" [attr.aria-label]="'Arquitetura de ' + p.name">
+    <aside class="arch mono" [attr.aria-label]="'Visão geral de ' + p.name">
       <p class="arch__label">
         <span>{{ p.flowTitle }}</span>
         <span class="arch__context">{{ p.context }}</span>
