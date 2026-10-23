@@ -141,6 +141,61 @@
   margin-left: auto;
 }
 
+.commit__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+
+  .commit__place {
+    margin-bottom: 0;
+  }
+}
+
+/* logo da instituição: quadradinho monocromático, como os ícones da stack */
+.org {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-sunken);
+  color: var(--text);
+  transition:
+    color 0.25s var(--ease),
+    border-color 0.25s var(--ease);
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.org__mask {
+  width: 28px;
+  height: 28px;
+  background: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.org__text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+.commit:hover .org {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
 .commit__msg {
   margin: 0 0 2px;
   font-family: var(--font-display);

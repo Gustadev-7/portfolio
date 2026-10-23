@@ -32,8 +32,37 @@
                     <span class="commit__kind">{{ commit.kind }}</span>
                     <span class="commit__date">{{ commit.date }}</span>
                   </p>
-                  <h4 class="commit__msg">{{ commit.message }}</h4>
-                  <p class="commit__place">{{ commit.place }}</p>
+                  <div class="commit__head">
+                    @if (commit.org; as org) {
+                      <span class="org" aria-hidden="true">
+                        @switch (org.kind) {
+                          @case ('svg') {
+                            <svg [attr.viewBox]="org.viewBox ?? '0 0 24 24'" focusable="false">
+                              @for (layer of org.layers; track $index) {
+                                <path
+                                  [attr.d]="layer.d"
+                                  [attr.fill]="layer.mode === 'stroke' ? 'none' : 'currentColor'"
+                                  [attr.stroke]="layer.mode === 'stroke' ? 'currentColor' : null"
+                                  [attr.stroke-width]="layer.strokeWidth ?? null"
+                                  [attr.opacity]="layer.opacity ?? null"
+                                />
+                              }
+                            </svg>
+                          }
+                          @case ('mask') {
+                            <span class="org__mask" [style.mask-image]="'url(' + org.src + ')'" [style.-webkit-mask-image]="'url(' + org.src + ')'"></span>
+                          }
+                          @case ('text') {
+                            <span class="org__text mono">{{ org.text }}</span>
+                          }
+                        }
+                      </span>
+                    }
+                    <div>
+                      <h4 class="commit__msg">{{ commit.message }}</h4>
+                      <p class="commit__place">{{ commit.place }}</p>
+                    </div>
+                  </div>
                   <p class="commit__detail">{{ commit.detail }}</p>
                   @if (commit.highlights?.length) {
                     <ul class="commit__highlights">
