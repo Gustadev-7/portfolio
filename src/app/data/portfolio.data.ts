@@ -39,6 +39,7 @@ export const PROFILE: Profile = {
       handle: 'gustavo-domingos',
       href: 'https://www.linkedin.com/in/gustavo-domingos-4b7880356',
     },
+    { label: 'Instagram', handle: 'gusta.dev7', href: 'https://www.instagram.com/gusta.dev7' },
   ],
 };
 
@@ -202,6 +203,7 @@ export const EXPERIENCE: Commit[] = [
     kind: 'trabalho',
     message: 'Assistente de TI',
     place: 'Vidroeste Vidros Temperados',
+    logo: 'vidroeste',
     detail:
       'Suporte técnico com manutenção preventiva e corretiva de hardware e software, garantindo o funcionamento contínuo dos equipamentos e sistemas da empresa.',
     highlights: [
@@ -217,6 +219,7 @@ export const EDUCATION: Commit[] = [
     kind: 'graduação',
     message: 'Análise e Desenvolvimento de Sistemas',
     place: 'Instituto Federal de São Paulo (IFSP)',
+    logo: 'ifsp',
     detail: 'Tecnologia em ADS, cursando o 4º semestre.',
   },
   {
@@ -224,6 +227,7 @@ export const EDUCATION: Commit[] = [
     kind: 'curso',
     message: 'Java',
     place: 'Red Hat',
+    logo: 'redhat',
     detail: 'Fundamentos da linguagem e orientação a objetos.',
   },
   {
@@ -231,6 +235,7 @@ export const EDUCATION: Commit[] = [
     kind: 'curso',
     message: 'UX/UI Design',
     place: 'Google',
+    logo: 'google',
     detail: 'Pesquisa com usuários, prototipação e design de interfaces.',
   },
 ];

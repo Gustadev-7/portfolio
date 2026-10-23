@@ -76,6 +76,8 @@ export interface Commit {
   kind: CommitKind;
   message: string;
   place: string;
+  /** Chave de ORG_LOGOS (components/journey/org-logos.ts). */
+  logo?: string;
   detail: string;
   highlights?: string[];
 }
