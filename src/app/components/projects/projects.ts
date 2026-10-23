@@ -13,6 +13,5 @@ import { SectionHeading } from '../section-heading/section-heading';
   styleUrl: './projects.scss',
 })
 export class Projects {
-  protected readonly featured = PROJECTS.filter((p) => p.featured);
-  protected readonly others = PROJECTS.filter((p) => !p.featured);
+  protected readonly projects = PROJECTS;
 }

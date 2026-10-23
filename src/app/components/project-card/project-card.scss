@@ -3,6 +3,7 @@
 }
 
 .card {
+  scroll-margin-top: calc(var(--header-h) + 24px);
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
   border: 1px solid var(--line);

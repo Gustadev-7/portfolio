@@ -4,35 +4,14 @@
       index="02"
       path="/projetos"
       title="Projetos"
-      emphasis="em destaque"
+      emphasis="e sistemas"
       lead="Trabalhos com foco em backend: arquitetura em camadas, regras de negócio, validação de dados e integração entre sistemas."
     />
 
-    <div class="featured">
-      @for (project of featured; track project.slug; let i = $index) {
+    <div class="list">
+      @for (project of projects; track project.slug; let i = $index) {
         <app-project-card appReveal [project]="project" [index]="i + 1" />
       }
-    </div>
-
-    <div class="others" appReveal>
-      <p class="others__query mono">
-        <span class="method method--get">GET</span> /projetos<span class="others__param">?destaque=false</span>
-        <span class="others__count">· {{ others.length }} resultados</span>
-      </p>
-
-      <ul class="others__list">
-        @for (project of others; track project.slug) {
-          <li>
-            <a class="row" [href]="project.repo" target="_blank" rel="noopener">
-              <span class="row__name display">{{ project.name }}</span>
-              <span class="row__tagline">{{ project.tagline }}</span>
-              <span class="row__stack mono">{{ project.stack.join(' · ') }}</span>
-              <span class="row__year mono">{{ project.year }}</span>
-              <span class="row__arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-        }
-      </ul>
     </div>
   </div>
 </section>

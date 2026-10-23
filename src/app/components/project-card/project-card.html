@@ -1,6 +1,6 @@
 @let p = project();
 
-<article class="card">
+<article class="card" [id]="'projeto-' + p.slug">
   <div class="card__main">
     <header class="card__meta mono">
       <span class="card__route"><span class="method method--get">GET</span> /projetos/{{ p.slug }}</span>
