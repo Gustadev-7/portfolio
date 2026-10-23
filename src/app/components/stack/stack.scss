@@ -101,6 +101,18 @@
   }
 }
 
+.skill__mask {
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
 .skill__body {
   display: grid;
   gap: 2px;

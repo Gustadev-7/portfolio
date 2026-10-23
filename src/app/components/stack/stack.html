@@ -21,13 +21,19 @@
             @for (item of group.items; track item.name) {
               <li class="skill">
                 <span class="skill__icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false">
-                    @if (item.svg.mode === 'fill') {
-                      <path [attr.d]="item.svg.path" fill="currentColor" />
-                    } @else {
-                      <path [attr.d]="item.svg.path" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                  @switch (item.svg.mode) {
+                    @case ('mask') {
+                      <span class="skill__mask" [style.mask-image]="'url(' + item.svg.src + ')'" [style.-webkit-mask-image]="'url(' + item.svg.src + ')'"></span>
                     }
-                  </svg>
+                    @case ('fill') {
+                      <svg viewBox="0 0 24 24" focusable="false"><path [attr.d]="item.svg.path" fill="currentColor" /></svg>
+                    }
+                    @case ('stroke') {
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path [attr.d]="item.svg.path" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    }
+                  }
                 </span>
 
                 <div class="skill__body">

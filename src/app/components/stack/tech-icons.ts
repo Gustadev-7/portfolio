@@ -7,7 +7,6 @@ import {
   siOpenjdk,
   siPhp,
   siPostman,
-  siSocketdotio,
   siTypescript,
   siWhatsapp,
 } from 'simple-icons';
@@ -17,13 +16,14 @@ import {
  * importadas uma a uma para entrar no build só o que é usado. Marcas que não
  * estão no Simple Icons usam ícones genéricos desenhados em traço.
  */
-export interface TechIcon {
-  path: string;
+export type TechIcon =
   /** 'fill' para logos; 'stroke' para os ícones genéricos em linha. */
-  mode: 'fill' | 'stroke';
-}
+  | { mode: 'fill' | 'stroke'; path: string }
+  /** Imagem com fundo transparente em public/, recortada e pintada na cor do tema via CSS mask. */
+  | { mode: 'mask'; src: string };
 
 const logo = (icon: { path: string }): TechIcon => ({ path: icon.path, mode: 'fill' });
+const mask = (src: string): TechIcon => ({ mode: 'mask', src });
 
 const GENERIC = {
   database: {
@@ -62,7 +62,7 @@ export const TECH_ICONS = {
   oracle: GENERIC.capsule,
   rest: GENERIC.api,
   whatsapp: logo(siWhatsapp),
-  websocket: logo(siSocketdotio),
+  websocket: mask('logos/websocket.png'),
   git: logo(siGit),
   postman: logo(siPostman),
   vscode: GENERIC.code,
