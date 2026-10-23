@@ -46,6 +46,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'crm-atendimento',
     name: 'CRM de Atendimento',
+    shortName: 'CRM',
     tagline: 'Atendimento via WhatsApp e chat interno da equipe em um só sistema.',
     description:
       'Sistema web de uso interno que desenvolvi para a empresa onde trabalho. Centraliza o atendimento de clientes pelo WhatsApp em uma interface no estilo do WhatsApp Web, com vários números organizados por departamento, e integra um chat interno em tempo real para a equipe.',
@@ -60,7 +61,6 @@ export const PROJECTS: Project[] = [
       'Chat interno em tempo real com login único compartilhado com o CRM',
       'Controle de equipe com permissões por função; em produção na empresa',
     ],
-    featured: true,
     flowTitle: 'módulos',
     flow: [
       { label: 'Canais', detail: 'API oficial e não oficial do WhatsApp, por departamento' },
@@ -85,7 +85,6 @@ export const PROJECTS: Project[] = [
       'Relatórios de consumo e gastos por período',
       'Em produção na empresa',
     ],
-    featured: true,
     flowTitle: 'módulos',
     flow: [
       { label: 'Monitoramento', detail: 'status e níveis de suprimento em tempo real' },
@@ -97,6 +96,7 @@ export const PROJECTS: Project[] = [
   {
     slug: 'concessionaria-api',
     name: 'API Concessionária',
+    shortName: 'Concessionária',
     tagline: 'API REST em camadas para gestão de uma concessionária.',
     description:
       'Clientes, vendedores, carros, estoque e notas fiscais com arquitetura MVC. As tabelas são criadas na inicialização e as regras de negócio ficam isoladas na camada de serviço, retornando códigos HTTP coerentes com cada violação.',
@@ -110,7 +110,6 @@ export const PROJECTS: Project[] = [
       'Validações de domínio: comissão 0–30%, ano do veículo, preço > 0',
     ],
     repo: 'https://github.com/Gustadev-7/projeto-I-prog-web',
-    featured: true,
     flowTitle: 'camadas',
     flow: [
       { label: 'routes', detail: 'mapeia verbo + caminho para o controller' },
@@ -128,64 +127,74 @@ export const PROJECTS: Project[] = [
   {
     slug: 'sistema-de-compras',
     name: 'Sistema de Compras',
-    tagline: 'Sistema de compras com orientação a objetos em Java.',
-    description: 'Modelagem de domínio e organização em pacotes no IntelliJ.',
+    tagline: 'Cadastro de clientes, produtos e vendas em Java, com arquitetura em camadas.',
+    description:
+      'Sistema de compras desenvolvido para praticar Programação Orientada a Objetos e modelagem de dados. Cada responsabilidade fica em uma camada própria: interface, regras de negócio e acesso a dados.',
     context: 'Estudo',
     year: '2026',
-    stack: ['Java'],
-    highlights: [],
+    stack: ['Java', 'POO'],
+    highlights: [
+      'Entidades do domínio (cliente, produto, venda e itens) modeladas como classes',
+      'Regras de negócio separadas da interface, na camada BLL',
+      'Padrão DAO isolando o acesso aos dados',
+      'Venda composta por itens, relacionando clientes e produtos',
+    ],
     repo: 'https://github.com/Gustadev-7/SitemaDeCompras',
-    featured: false,
-  },
-  {
-    slug: 'loja-tp1',
-    name: 'Loja TP1',
-    tagline: 'Loja virtual em Angular com TypeScript.',
-    description: 'Componentes standalone, testes com Vitest e formatação com Prettier.',
-    context: 'Acadêmico',
-    year: '2026',
-    stack: ['Angular', 'TypeScript'],
-    highlights: [],
-    repo: 'https://github.com/Gustadev-7/loja-tp1',
-    featured: false,
+    flowTitle: 'camadas',
+    flow: [
+      { label: 'UI', detail: 'telas de cadastro de clientes, produtos e vendas' },
+      { label: 'BLL', detail: 'regras de negócio de cada cadastro' },
+      { label: 'DAL', detail: 'DAOs de cliente, produto e venda' },
+      { label: 'Model', detail: 'Cliente, Produto, Venda e Item' },
+    ],
   },
 ];
 
+/**
+ * usedIn: slugs de PROJECTS onde a tecnologia foi usada ('portfolio' = este site).
+ * Os nomes viram links para o card do projeto.
+ */
 export const STACK: StackGroup[] = [
   {
-    key: 'dependencies',
-    description: 'principais tecnologias',
+    title: 'Backend',
     items: [
-      { name: 'typescript', note: 'linguagem principal' },
-      { name: 'node.js', note: 'runtime das APIs' },
-      { name: 'express', note: 'rotas e middlewares' },
-      { name: 'mysql', note: 'modelagem e SQL' },
-      { name: 'java', note: 'POO e estudo' },
-      { name: 'php', note: 'API de custos (PDO)' },
-      { name: 'firebird', note: 'triggers e views' },
+      { name: 'Node.js', icon: 'nodejs', usedIn: ['crm-atendimento', 'printmonitor', 'concessionaria-api', 'portfolio'] },
+      { name: 'PHP', icon: 'php', usedIn: ['crm-atendimento', 'printmonitor'] },
+      { name: 'TypeScript', icon: 'typescript', usedIn: ['printmonitor', 'concessionaria-api', 'portfolio'] },
+      { name: 'Express', icon: 'express', usedIn: ['printmonitor', 'concessionaria-api'] },
+      { name: 'Java', icon: 'java', usedIn: ['sistema-de-compras'] },
     ],
   },
   {
-    key: 'devDependencies',
-    description: 'em aprofundamento',
+    title: 'Banco de dados',
     items: [
-      { name: 'angular', note: 'front na faculdade' },
-      { name: 'oracle', note: 'banco relacional' },
-      { name: 'c', note: 'fundamentos' },
-      { name: 'react', note: 'interfaces' },
+      { name: 'SQL', icon: 'sql', usedIn: ['crm-atendimento', 'printmonitor', 'concessionaria-api'] },
+      { name: 'Firebird', icon: 'firebird', usedIn: ['crm-atendimento', 'printmonitor'] },
+      { name: 'MySQL', icon: 'mysql', usedIn: ['concessionaria-api'] },
+      { name: 'Oracle', icon: 'oracle', note: 'estudado na faculdade' },
     ],
   },
   {
-    key: 'tools',
-    description: 'ambiente de desenvolvimento',
+    title: 'Integrações',
     items: [
-      { name: 'git', note: 'versionamento' },
-      { name: 'postman', note: 'teste de API' },
-      { name: 'vscode', note: 'editor' },
-      { name: 'intellij', note: 'java' },
+      { name: 'APIs REST', icon: 'rest', usedIn: ['crm-atendimento', 'printmonitor', 'concessionaria-api'] },
+      { name: 'WhatsApp API', icon: 'whatsapp', usedIn: ['crm-atendimento'] },
+      { name: 'WebSocket', icon: 'websocket', usedIn: ['crm-atendimento'] },
+    ],
+  },
+  {
+    title: 'Ferramentas',
+    items: [
+      { name: 'Git', icon: 'git', note: 'todos os projetos' },
+      { name: 'Postman', icon: 'postman', note: 'teste de APIs' },
+      { name: 'VS Code', icon: 'vscode', note: 'editor principal' },
+      { name: 'IntelliJ IDEA', icon: 'intellij', note: 'projetos Java' },
     ],
   },
 ];
+
+/** Linha discreta abaixo da stack: o foco do portfólio é backend. */
+export const FRONTEND_NOTE = 'React e Angular, quando o projeto pede.';
 
 export const EXPERIENCE: Commit[] = [
   {

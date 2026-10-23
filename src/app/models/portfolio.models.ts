@@ -39,6 +39,8 @@ export interface StatusRule {
 export interface Project {
   slug: string;
   name: string;
+  /** Nome curto usado nas referências da seção de stack. */
+  shortName?: string;
   tagline: string;
   description: string;
   context: string;
@@ -47,7 +49,6 @@ export interface Project {
   highlights: string[];
   /** Sem `repo`, o card indica que o código é privado (sistemas internos). */
   repo?: string;
-  featured: boolean;
   flowTitle?: string;
   flow?: FlowStep[];
   statusRules?: StatusRule[];
@@ -55,12 +56,16 @@ export interface Project {
 
 export interface StackItem {
   name: string;
-  note: string;
+  /** Chave de TECH_ICONS (components/stack/tech-icons.ts). */
+  icon: string;
+  /** Slugs dos projetos onde a tecnologia foi usada ('portfolio' = este site). */
+  usedIn?: string[];
+  /** Texto curto quando não há projeto para citar (ex.: "faculdade"). */
+  note?: string;
 }
 
 export interface StackGroup {
-  key: string;
-  description: string;
+  title: string;
   items: StackItem[];
 }
 
