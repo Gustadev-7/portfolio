@@ -5,41 +5,55 @@
       path="/stack"
       title="Stack"
       emphasis="e ferramentas"
-      lead="Tecnologias que uso no dia a dia, as que estou aprofundando e as ferramentas do meu fluxo de trabalho."
+      lead="Tecnologias com que trabalho e os projetos em que cada uma foi usada."
     />
 
-    <div class="pkg mono" appReveal>
-      <div class="pkg__tabbar">
-        <span class="pkg__tab">package.json</span>
-        <span class="pkg__path">~/gustavo</span>
-      </div>
+    <div class="grid">
+      @for (group of groups; track group.title; let i = $index) {
+        <article class="group" appReveal [appRevealDelay]="i * 80">
+          <header class="group__head">
+            <span class="group__index mono">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+            <h3 class="group__title">{{ group.title }}</h3>
+            <span class="group__count mono">{{ group.items.length }}</span>
+          </header>
 
-      <div class="pkg__head">
-        <span class="p">{{ '{' }}</span>
-        <span class="indent"><span class="k">"name"</span><span class="p">: </span><span class="s">"gustavo-domingos"</span><span class="p">,</span></span>
-        <span class="indent"><span class="k">"version"</span><span class="p">: </span><span class="s">"{{ version }}"</span><span class="p">,</span></span>
-      </div>
+          <ul class="group__list">
+            @for (item of group.items; track item.name) {
+              <li class="skill">
+                <span class="skill__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    @if (item.svg.mode === 'fill') {
+                      <path [attr.d]="item.svg.path" fill="currentColor" />
+                    } @else {
+                      <path [attr.d]="item.svg.path" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                    }
+                  </svg>
+                </span>
 
-      <div class="pkg__groups">
-        @for (group of groups; track group.key; let i = $index; let last = $last) {
-          <div class="group" appReveal [appRevealDelay]="i * 100">
-            <p class="indent">
-              <span class="k">"{{ group.key }}"</span><span class="p">: {{ '{' }}</span>
-              <span class="c">// {{ group.description }}</span>
-            </p>
-            <ul>
-              @for (item of group.items; track item.name; let lastItem = $last) {
-                <li class="dep">
-                  <span class="k">"{{ item.name }}"</span><span class="p">: </span><span class="s">"{{ item.note }}"</span><span class="p">{{ lastItem ? '' : ',' }}</span>
-                </li>
-              }
-            </ul>
-            <p class="indent"><span class="p">{{ '}' }}{{ last ? '' : ',' }}</span></p>
-          </div>
-        }
-      </div>
-
-      <div class="pkg__foot"><span class="p">{{ '}' }}</span></div>
+                <div class="skill__body">
+                  <span class="skill__name">{{ item.name }}</span>
+                  @if (item.refs.length) {
+                    <span class="skill__meta mono">
+                      @for (ref of item.refs; track ref.href; let last = $last) {
+                        <a class="skill__ref" [href]="ref.href">{{ ref.label }}</a>
+                        @if (!last) {
+                          <span class="skill__sep" aria-hidden="true">·</span>
+                        }
+                      }
+                    </span>
+                  } @else if (item.note) {
+                    <span class="skill__meta mono">{{ item.note }}</span>
+                  }
+                </div>
+              </li>
+            }
+          </ul>
+        </article>
+      }
     </div>
+
+    <p class="aside mono" appReveal>
+      <span class="aside__slashes">//</span> frontend: {{ frontendNote }}
+    </p>
   </div>
 </section>
