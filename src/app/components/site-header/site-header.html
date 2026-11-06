@@ -1,6 +1,6 @@
-<header class="header">
+<header class="header" [class.is-menu-open]="menuOpen()">
   <div class="container header__inner">
-    <a class="brand" href="#inicio" aria-label="gusta.dev, voltar ao início">
+    <a class="brand" href="#inicio" aria-label="gusta.dev, voltar ao início" (click)="closeMenu()">
       <app-brand-logo class="brand__logo" />
     </a>
 
@@ -29,5 +29,48 @@
         <span class="theme-toggle__thumb"></span>
       </span>
     </button>
+
+    <button
+      class="menu-toggle mono"
+      type="button"
+      (click)="toggleMenu()"
+      aria-controls="menu-mobile"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Fechar menu' : 'Abrir menu'"
+    >
+      <span class="menu-toggle__label" aria-hidden="true">{{ menuOpen() ? 'fechar' : 'menu' }}</span>
+      <span class="menu-toggle__icon" [class.is-open]="menuOpen()" aria-hidden="true"><span></span><span></span></span>
+    </button>
   </div>
 </header>
+
+<!-- fora do <header>: o backdrop-filter dele prenderia um position:fixed -->
+<nav
+  id="menu-mobile"
+  class="sheet"
+  [class.is-open]="menuOpen()"
+  [attr.inert]="menuOpen() ? null : ''"
+  aria-label="Seções"
+>
+  <ol class="sheet__list">
+    @for (item of nav; track item.path; let i = $index) {
+      <li class="sheet__item" [style.--i]="i">
+        <a
+          class="sheet__link"
+          [href]="anchor(item.path)"
+          (click)="closeMenu()"
+          [class.is-active]="log.currentPath() === item.path"
+          [attr.aria-current]="log.currentPath() === item.path ? 'location' : null"
+        >
+          <span class="sheet__index mono">0{{ i + 1 }}</span>
+          <span class="sheet__method method mono" [class.method--post]="item.method === 'POST'" [class.method--get]="item.method === 'GET'">{{ item.method }}</span>
+          <span class="sheet__label">/{{ item.label }}</span>
+        </a>
+      </li>
+    }
+  </ol>
+
+  <p class="sheet__footer mono">
+    <span class="sheet__prompt">$</span> curl gusta.dev<span class="sheet__cursor" aria-hidden="true">_</span>
+  </p>
+</nav>
