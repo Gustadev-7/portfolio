@@ -30,6 +30,9 @@
                       <span class="commit__ref">HEAD → {{ t.branch }}</span>
                     }
                     <span class="commit__kind">{{ commit.kind }}</span>
+                    @if (commit.completed) {
+                      <span class="commit__done">✓ concluído</span>
+                    }
                     <span class="commit__date">{{ commit.date }}</span>
                   </p>
                   <div class="commit__head">
@@ -64,6 +67,11 @@
                     </div>
                   </div>
                   <p class="commit__detail">{{ commit.detail }}</p>
+                  @if (commit.certificate) {
+                    <a class="commit__cert mono" [href]="commit.certificate" target="_blank" rel="noopener">
+                      ver certificado <span aria-hidden="true">↗</span>
+                    </a>
+                  }
                   @if (commit.highlights?.length) {
                     <ul class="commit__highlights">
                       @for (item of commit.highlights; track item) {

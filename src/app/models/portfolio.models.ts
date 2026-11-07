@@ -80,4 +80,8 @@ export interface Commit {
   logo?: string;
   detail: string;
   highlights?: string[];
+  /** Curso/formação concluído: exibe o selo "concluído". */
+  completed?: boolean;
+  /** Link público do certificado. */
+  certificate?: string;
 }

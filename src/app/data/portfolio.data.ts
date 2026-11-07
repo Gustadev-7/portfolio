@@ -16,6 +16,7 @@ export const PROFILE: Profile = {
   about: [
     'Sou estudante de Análise e Desenvolvimento de Sistemas no IFSP e trabalho como Assistente de TI. O dia a dia com infraestrutura me deixou com uma curiosidade prática: entender o que acontece entre a requisição e a resposta.',
     'Na Vidroeste, além do suporte, desenvolvi sistemas internos: um CRM de atendimento via WhatsApp com chat interno para a equipe e um sistema de monitoramento de impressoras com controle de custos. Meu foco é o backend: arquitetura em camadas, regras de negócio bem definidas e APIs previsíveis, com TypeScript, Node.js, Java e SQL.',
+    'Também concluí o curso de Fundamentos de UX Design do Google, e isso muda como eu penso o backend: em quem vai consumir a API, em mensagens de erro claras e em fluxos previsíveis.',
     'Estou em busca de uma vaga de estágio ou júnior em desenvolvimento, com interesse especial em backend e banco de dados.',
   ],
   email: 'gustavo.souzadomingos7@gmail.com',
@@ -231,11 +232,13 @@ export const EDUCATION: Commit[] = [
     detail: 'Fundamentos da linguagem e orientação a objetos.',
   },
   {
-    date: 'em andamento',
+    date: 'nov 2026',
     kind: 'curso',
-    message: 'UX/UI Design',
-    place: 'Google',
+    message: 'Foundations of UX Design',
+    place: 'Google · Coursera',
     logo: 'google',
-    detail: 'Pesquisa com usuários, prototipação e design de interfaces.',
+    detail: 'Fundamentos do design centrado no usuário: ciclo de design, pesquisa com usuários, acessibilidade e equidade.',
+    completed: true,
+    certificate: 'https://coursera.org/share/10a13efd53478eb371f42129a63f0455',
   },
 ];
